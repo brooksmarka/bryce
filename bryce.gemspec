@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
      'http://rubygems.org/gems/bryce'
    s.license       = 'MIT'
    s.add_runtime_dependency 'httparty', '~> 0.13'
-   s.add_development_dependency "rspec"
+   
  end
