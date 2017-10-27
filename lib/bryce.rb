@@ -1,7 +1,9 @@
 require "httparty"
+require "./lib/roadmap.rb"
 
 class Bryce
   include HTTParty
+  include Roadmap
 
   def initialize(email, password)
 
