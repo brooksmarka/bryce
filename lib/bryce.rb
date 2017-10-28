@@ -25,6 +25,15 @@ class Bryce
     JSON.parse(response.body)
   end
 
+  def get_messages(page_num=1)
+    response = self.class.get(base_uri("message_threads"), body: { page: page_num }, headers: { "authorization" => @auth_token })
+    JSON.parse(response.body)
+  end
+
+  def create_messages(email, rec_id, subject, body)
+    response = self.class.post(base_uri("messages"), body: { "sender": email, "recipient_id": rec_id, "subject": subject, "stripped-text": body }, headers: { "authorization" => @auth_token })
+  end
+
   private
 
   def base_uri(end_point)
