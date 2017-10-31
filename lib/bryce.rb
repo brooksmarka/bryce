@@ -18,6 +18,7 @@ class Bryce
   def get_me
     response = self.class.get(base_uri("users/me"), headers: { "authorization" => @auth_token })
     JSON.parse(response.body)
+    puts response
   end
 
   def get_mentor_availability(id)
@@ -32,6 +33,10 @@ class Bryce
 
   def create_messages(email, rec_id, subject, body)
     response = self.class.post(base_uri("messages"), body: { "sender": email, "recipient_id": rec_id, "subject": subject, "stripped-text": body }, headers: { "authorization" => @auth_token })
+  end
+
+  def create_submission(assignment_branch, commit_link, checkpoint_id, comment, enrollment_id)
+    response = self.class.post(base_uri("checkpoint_submissions"), body: { "assignment_branch": assignment_branch, "assignment_commit_link": commit_link, "checkpoint_id": checkpoint_id, "comment": comment, "enrollment_id": enrollment_id }, headers: { "authorization" => @auth_token })
   end
 
   private
